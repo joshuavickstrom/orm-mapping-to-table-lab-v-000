@@ -42,4 +42,9 @@ class Student
     @id=DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
   end
 
+  def create(name:, grade:)
+    new_student = DB[:conn].execute("SELECT * FROM students WHERE student.id =?", id).flatten
+    Student.new(id:new_student[0], name:new_student[1], grade:new_student[2])
+  end
+
 end
