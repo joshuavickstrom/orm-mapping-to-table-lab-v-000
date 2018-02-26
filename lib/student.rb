@@ -45,6 +45,7 @@ class Student
   def create(name:, grade:)
     new_student = DB[:conn].execute("SELECT * FROM students WHERE student.id =?", id).flatten
     Student.new(name:new_student[0], grade:new_student[1])
+    Student.save
   end
 
 end
